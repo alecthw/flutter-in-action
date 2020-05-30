@@ -1,4 +1,4 @@
-# 9.6 通用"切换动画"组件（AnimatedSwitcher）
+# 9.6 通用“动画切换”组件（AnimatedSwitcher）
 
 实际开发中，我们经常会遇到切换UI元素的场景，比如Tab切换、路由切换。为了增强用户体验，通常在切换时都会指定一个动画，以使切换过程显得平滑。Flutter SDK组件库中已经提供了一些常用的切换组件，如`PageView`、`TabView`等，但是，这些组件并不能覆盖全部的需求场景，为此，Flutter SDK中提供了一个`AnimatedSwitcher`组件，它定义了一种通用的UI切换抽象。
 
@@ -77,7 +77,7 @@ class AnimatedSwitcherCounterRoute extends StatefulWidget {
                '$_count',
                //显示指定key，不同的key会被认为是不同的Text，这样才能执行动画
                key: ValueKey<int>(_count),
-               style: Theme.of(context).textTheme.display1,
+               style: Theme.of(context).textTheme.headline4,
              ),
            ),
            RaisedButton(
@@ -225,7 +225,7 @@ AnimatedSwitcher(
 
 ### SlideTransitionX
 
-上面的示例我们实现了“左出右入”的动画，那如果要实现“右入左出”、“上入下出”或者 “下入上出”怎么办？当然，我们可以分别修改上面的代码，但是这样每种动画都得单独定义一个“Transition”，这很麻烦。本节将分装一个通用的`SlideTransitionX` 来实现这种“出入滑动动画”，代码如下：
+上面的示例我们实现了“左出右入”的动画，那如果要实现“右入左出”、“上入下出”或者 “下入上出”怎么办？当然，我们可以分别修改上面的代码，但是这样每种动画都得单独定义一个“Transition”，这很麻烦。本节将封装一个通用的`SlideTransitionX` 来实现这种“出入滑动动画”，代码如下：
 
 ```dart
 class SlideTransitionX extends AnimatedWidget {

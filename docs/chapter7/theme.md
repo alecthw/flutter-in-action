@@ -114,7 +114,7 @@ static const MaterialColor blue = MaterialColor(
 static const int _bluePrimaryValue = 0xFF2196F3;
 ```
 
-`Colors.blue[50]`到`Colors.blue[100]`的色值从浅蓝到深蓝渐变，效果如图7-5所示：
+`Colors.blue[50]`到`Colors.blue[900]`的色值从浅蓝到深蓝渐变，效果如图7-5所示：
 
 ![NavBar](../imgs/7-5.jpeg)
 
@@ -234,10 +234,10 @@ class _ThemeTestRouteState extends State<ThemeTestRoute> {
 - ```dart 
   static ThemeData of(BuildContext context, { bool shadowThemeOnly = false }) {
      // 简化代码，并非源码  
-     return context.inheritFromWidgetOfExactType(_InheritedTheme).theme.data
+     return context.dependOnInheritedWidgetOfExactType<_InheritedTheme>().theme.data
   }
   ```
 
-  `context.inheritFromWidgetOfExactType` 会在widget树中从当前位置向上查找第一个类型为`_InheritedTheme`的widget。所以当局部指定`Theme`后，其子树中通过`Theme.of()`向上查找到的第一个`_InheritedTheme`便是我们指定的`Theme`。
+  `context.dependOnInheritedWidgetOfExactType` 会在widget树中从当前位置向上查找第一个类型为`_InheritedTheme`的widget。所以当局部指定`Theme`后，其子树中通过`Theme.of()`向上查找到的第一个`_InheritedTheme`便是我们指定的`Theme`。
 
 - 本示例是对单个路由换肤，如果想要对整个应用换肤，则可以去修改`MaterialApp`的`theme`属性。
